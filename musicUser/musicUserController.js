@@ -14,11 +14,11 @@ router.post(
         const user = await getUserByLogin(login);
         const isCompare = await verifyUser(password, user.password);
         if(!isCompare){
-            res.json({message: 'Не верный пороль'})
+            res.json({message: 'Не верный пароль'})
+        }else{
+            const jwtToken = jwt.sign(login,process.env.JWT_SECRET);
+            res.json({token: jwtToken, user})
         }
-        const jwtToken = jwt.sign(login,process.env.JWT_SECRET);
-        res.json({token: jwtToken, user})
-
     }
 )
 
