@@ -12,6 +12,10 @@ router.post(
     async (req, res) => {
         const { login, password } = req.body;
         const user = await getUserByLogin(login);
+        if(!user){
+            res.json({message: 'Пользователь не существует'});
+            return
+        }
         const isCompare = await verifyUser(password, user.password);
         if(!isCompare){
             res.json({message: 'Не верный пароль'})
