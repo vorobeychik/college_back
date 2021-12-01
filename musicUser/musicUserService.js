@@ -9,7 +9,7 @@ class UserService {
 
     async createUser(login, password) {
         const hashedPassword = await bcrypt.hash(password, 10);
-        return musicUserModel.create({login, password: hashedPassword, avatar: 'avatar1'})
+        return musicUserModel.create({login, password: hashedPassword, avatar: 'avatar'})
     }
 
     async verifyUser(password, passwordFromDb) {
