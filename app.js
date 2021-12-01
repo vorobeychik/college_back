@@ -2,6 +2,9 @@ const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const musicUserController = require('./musicUser/musicUserController');
+const userController = require('./user/user.controller');
+const filmController = require('./film/film.controller');
+const planController = require('./plan/plan.controller')
 
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
@@ -21,7 +24,10 @@ app.use(
 app.use(cookieParser())
 app.use(bodyParser.json())
 app.use('/api/music_user', musicUserController);
-// app.use(`${serverLink}${userEndpoint}`, boardController)
+app.use('/api/user', userController);
+app.use('/api/film', filmController);
+app.use('/api/plan', planController);
+
 
 async function start() {
     await mongoose.connect(uri);

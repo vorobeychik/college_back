@@ -1,9 +1,10 @@
 const mongoose = require("mongoose");
+const { ObjectId} = require("mongoose");
 
 const userSchema = new mongoose.Schema({
     login: String,
     password: String,
-    avatar: String,
+    plan: ObjectId,
 });
 
-module.exports = mongoose.model('User', userSchema);
+module.exports = mongoose.model('FilmUser', userSchema);
