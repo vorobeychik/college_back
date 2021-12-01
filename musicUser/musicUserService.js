@@ -12,6 +12,10 @@ class UserService {
         return musicUserModel.create({login, password: hashedPassword, avatar: 'avatar'})
     }
 
+    async changeAvatar(userId,avatarName){
+        return musicUserModel.updateOne({_id: userId}, { avatar: avatarName})
+    }
+
     async verifyUser(password, passwordFromDb) {
         return await bcrypt.compare(password, passwordFromDb)
     }

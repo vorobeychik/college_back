@@ -18,6 +18,7 @@ router.post(
             return
         }
         const isCompare = await verifyUser(password, user.password);
+        console.log('Compare', isCompare)
         if(!isCompare){
             res.json({message: 'Не верный пароль'})
         }else{
@@ -49,7 +50,7 @@ router.post('/registration',async (req, res) => {
 
         const candidate = await getUserByLogin(login);
         if(candidate){
-            res.json({message: 'Пользователь же существует'})
+            res.json({message: 'Пользователь уже существует'})
         }else{
             const user = await createUser(login, password)
             const jwtToken = jwt.sign(login,process.env.JWT_SECRET);

@@ -2,7 +2,7 @@ const { Router } = require('express')
 const userService = require('./musicUserService')
 const jwt = require("jsonwebtoken");
 const router = Router();
-const { getUserByLogin, verifyUser, createUser } = require('./musicUserService')
+const { getUserByLogin, verifyUser, createUser, changeAvatar } = require('./musicUserService')
 require('dotenv').config()
 
 const secret = process.env.JWT_SECRET;
@@ -59,6 +59,13 @@ router.post('/registration',async (req, res) => {
         console.log(error)
         res.send(null)
     }
+
+})
+
+router.post('/change-avatar',async (req, res) => {
+    const { id, avatarName } = req.body;
+    await changeAvatar(id, avatarName);
+    res.json({message: 'changed'})
 
 })
 
